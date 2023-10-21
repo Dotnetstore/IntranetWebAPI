@@ -1,5 +1,4 @@
-﻿using Domain.Entities.Contacts;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using TestHelper.FakeData;

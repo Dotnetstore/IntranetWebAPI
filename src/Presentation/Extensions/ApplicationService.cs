@@ -4,6 +4,8 @@ internal static class ApplicationService
 {
     internal static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
     {
+        builder.Services
+            .AddWebApi();
         return builder;
     }
 
