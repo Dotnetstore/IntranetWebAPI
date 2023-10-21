@@ -1,5 +1,4 @@
-﻿using Domain.Common;
-using Domain.Entities.Organizations;
+﻿using Domain.Entities.Organizations;
 using FluentAssertions;
 using TestHelper.FakeData;
 
