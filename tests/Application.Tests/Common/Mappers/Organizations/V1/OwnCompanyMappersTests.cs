@@ -1,8 +1,8 @@
-﻿using Application.Common.Mappers.Organizations;
+﻿using Application.Common.Mappers.Organizations.V1;
 using FluentAssertions;
 using TestHelper.FakeData;
 
-namespace Application.Tests.Common.Mappers.Organizations;
+namespace Application.Tests.Common.Mappers.Organizations.V1;
 
 public class OwnCompanyMappersTests
 {

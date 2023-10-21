@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces.Common;
 using Application.Features.Organizations.OwnCompanies.GetAll;
 using Contracts.Dtos.Organizations;
+using Contracts.Dtos.Organizations.V1;
 using Domain.Entities.Organizations;
 using FluentAssertions;
 using Infrastructure.Contexts;

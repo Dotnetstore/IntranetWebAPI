@@ -1,4 +1,4 @@
-﻿namespace Contracts.Dtos.Common;
+﻿namespace Contracts.Dtos.Common.V1;
 
 public abstract record BaseAuditableEntityDto : BaseEntityDto
 {

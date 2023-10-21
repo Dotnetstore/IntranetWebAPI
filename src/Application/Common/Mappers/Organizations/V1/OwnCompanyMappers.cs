@@ -1,7 +1,7 @@
-﻿using Contracts.Dtos.Organizations;
+﻿using Contracts.Dtos.Organizations.V1;
 using Domain.Entities.Organizations;
 
-namespace Application.Common.Mappers.Organizations;
+namespace Application.Common.Mappers.Organizations.V1;
 
 internal static class OwnCompanyMappers
 {

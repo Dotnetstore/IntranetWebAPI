@@ -1,10 +1,13 @@
-﻿namespace Presentation.Extensions;
+﻿using Infrastructure.Extensions;
+
+namespace Presentation.Extensions;
 
 internal static class ApplicationService
 {
     internal static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
     {
         builder.Services
+            .AddInfrastructure()
             .AddWebApi();
         return builder;
     }
@@ -24,7 +27,14 @@ internal static class ApplicationService
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(x =>
+            {
+                foreach (var description in app.DescribeApiVersions())
+                {
+                    x.SwaggerEndpoint( $"/swagger/{description.GroupName}/swagger.json",
+                        description.GroupName);
+                }
+            });
         }
 
         return app;

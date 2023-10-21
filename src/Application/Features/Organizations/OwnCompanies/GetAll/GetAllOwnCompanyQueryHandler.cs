@@ -1,7 +1,9 @@
 ﻿using Application.Common.Interfaces.Common;
 using Application.Common.Mappers.Organizations;
+using Application.Common.Mappers.Organizations.V1;
 using Application.Extensions;
 using Contracts.Dtos.Organizations;
+using Contracts.Dtos.Organizations.V1;
 using Domain.Entities.Organizations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
