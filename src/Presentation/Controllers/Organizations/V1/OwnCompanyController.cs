@@ -1,6 +1,10 @@
-﻿using Application.Features.Organizations.OwnCompanies.GetAll;
+﻿using Application.Features.Organizations.OwnCompanies.Create;
+using Application.Features.Organizations.OwnCompanies.GetAll;
 using Asp.Versioning;
 using Contracts.Dtos.Organizations.V1;
+using Contracts.Requests.Organizations.V1;
+using Contracts.Responses.Common.V1;
+using Contracts.Responses.Organizations.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Swagger;
@@ -26,6 +30,19 @@ public sealed class OwnCompanyController : ControllerBase
         var query = new GetAllOwnCompanyQuery(isDeleted);
 
         var result = await _sender.Send(query, cancellationToken);
+
+        return Ok(result);
+    }
+
+    [HttpPost(ApiEndPoints.OwnCompanyV1.Create)]
+    [ProducesResponseType(typeof(CreateOwnCompanyResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ValidationFailureResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateOwnCompanyRequest request,
+        CancellationToken cancellationToken)
+    {
+        var command = new CreateOwnCompanyCommand(request);
+
+        var result = await _sender.Send(command, cancellationToken);
 
         return Ok(result);
     }

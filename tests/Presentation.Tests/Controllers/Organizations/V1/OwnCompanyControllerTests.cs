@@ -1,5 +1,8 @@
-﻿using Application.Features.Organizations.OwnCompanies.GetAll;
+﻿using Application.Features.Organizations.OwnCompanies.Create;
+using Application.Features.Organizations.OwnCompanies.GetAll;
 using Contracts.Dtos.Organizations.V1;
+using Contracts.Requests.Organizations.V1;
+using Contracts.Responses.Organizations.V1;
 using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -34,5 +37,40 @@ public class OwnCompanyControllerTests
         var actualResult = Assert.IsAssignableFrom<IEnumerable<OwnCompanyDto>>(okResult.Value);
 
         actualResult.Count().Should().Be(2);
+    }
+    
+    [Fact]
+    public async Task CreateAsync_WithValidRequest_ReturnsCreatedResult()
+    {
+        // Arrange
+        var request = new CreateOwnCompanyRequest
+        {
+            CorporateId = "SE7101263924",
+            Name = "Test",
+            UserId = null
+        };
+
+        var dto = new OwnCompanyDto
+        {
+            Id = Guid.NewGuid(),
+            Name = "Test"
+        };
+
+        var response = new CreateOwnCompanyResponse(dto);
+
+        var sender = Substitute.For<ISender>();
+        sender.Send(Arg.Any<CreateOwnCompanyCommand>(), Arg.Any<CancellationToken>())
+            .Returns(response);
+
+        var controller = new OwnCompanyController(sender);
+
+        // Act
+        var result = await controller.CreateAsync(request, CancellationToken.None);
+
+        // Assert
+        var createdResult = Assert.IsType<OkObjectResult>(result);
+        var actualResult = Assert.IsAssignableFrom<CreateOwnCompanyResponse>(createdResult.Value);
+
+        dto.Id.Should().Be(actualResult.OwnCompany.Id);
     }
 }

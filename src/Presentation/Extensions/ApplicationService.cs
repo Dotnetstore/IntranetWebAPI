@@ -1,4 +1,5 @@
-﻿using Infrastructure.Extensions;
+﻿using Application.Extensions;
+using Infrastructure.Extensions;
 
 namespace Presentation.Extensions;
 
@@ -7,6 +8,7 @@ internal static class ApplicationService
     internal static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
     {
         builder.Services
+            .AddApplication()
             .AddInfrastructure()
             .AddWebApi();
         return builder;

@@ -1,4 +1,5 @@
 ﻿using Contracts.Dtos.Organizations.V1;
+using Contracts.Requests.Organizations.V1;
 using Domain.Entities.Organizations;
 
 namespace Application.Common.Mappers.Organizations.V1;
@@ -21,6 +22,25 @@ internal static class OwnCompanyMappers
             IsGdpr = q.IsGdpr,
             Name = q.Name,
             CorporateId = q.CorporateId
+        };
+    }
+
+    internal static OwnCompany ToEntity(this CreateOwnCompanyRequest q)
+    {
+        return new OwnCompany
+        {
+            CorporateId = q.CorporateId,
+            CreatedBy = q.UserId,
+            CreatedDate = DateTimeOffset.Now,
+            DeletedBy = null,
+            DeletedDate = null,
+            Id = Guid.NewGuid(),
+            IsDeleted = false,
+            IsGdpr = false,
+            IsSystem = false,
+            LastUpdatedDate = null,
+            LastUpdatedBy = null,
+            Name = q.Name
         };
     }
 }
