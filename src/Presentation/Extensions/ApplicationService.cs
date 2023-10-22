@@ -1,5 +1,6 @@
 ﻿using Application.Extensions;
 using Infrastructure.Extensions;
+using Presentation.Middleware;
 
 namespace Presentation.Extensions;
 
@@ -46,6 +47,7 @@ internal static class ApplicationService
     {
         app.UseHttpsRedirection();
         app.UseAuthorization();
+        app.UseMiddleware<ValidationMappingMiddleware>();
         app.MapControllers();
 
         return app;
