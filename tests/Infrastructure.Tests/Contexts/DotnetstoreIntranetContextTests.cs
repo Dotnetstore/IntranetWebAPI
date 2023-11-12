@@ -7,16 +7,15 @@ namespace Infrastructure.Tests.Contexts;
 
 public class DotnetstoreIntranetContextTests : IDisposable
 {
-    private readonly DbContextOptions<DotnetstoreIntranetContext> _options;
     private readonly DotnetstoreIntranetContext _context;
 
     public DotnetstoreIntranetContextTests()
     {
-        _options = new DbContextOptionsBuilder<DotnetstoreIntranetContext>()
+        var options = new DbContextOptionsBuilder<DotnetstoreIntranetContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
-        _context = new DotnetstoreIntranetContext(_options);
+        _context = new DotnetstoreIntranetContext(options);
     }
 
     [Fact]
@@ -38,14 +37,14 @@ public class DotnetstoreIntranetContextTests : IDisposable
     public void Can_Retrieve_ContactInformation_From_Database()
     {
         // Arrange
-        var contactInfo = ContactFakeData.GenerateOwnCompanyFakeData(1).Single();
+        var contactInfo = ContactFakeData.GenerateEmailInformationFakeData(1).Single();
     
         // Act
-        _context.ContactInformation.Add(contactInfo);
+        _context.EmailInformation.Add(contactInfo);
         _context.SaveChanges();
     
         // Assert
-        var retrievedContactInfo = _context.ContactInformation.FirstOrDefault(ci => ci.Id == contactInfo.Id);
+        var retrievedContactInfo = _context.EmailInformation.FirstOrDefault(ci => ci.Id == contactInfo.Id);
         retrievedContactInfo.Should().BeEquivalentTo(contactInfo);
     }
 

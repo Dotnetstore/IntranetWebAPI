@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Contacts;
+﻿using Domain;
+using Domain.Entities.Contacts;
 using Domain.Entities.Organizations;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -33,16 +34,11 @@ public class DotnetstoreIntranetContext : DbContext
     public DbSet<UserInRole> UserInRoles => Set<UserInRole>();
     public DbSet<RoleInGroup> RoleInGroups => Set<RoleInGroup>();
 
-    public DbSet<ContactInformation> ContactInformation => Set<ContactInformation>();
+    public DbSet<EmailInformation> EmailInformation => Set<EmailInformation>();
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder
-            .Entity<ContactInformation>()
-            .Property(q => q.ContactInformationType)
-            .HasConversion(
-                q => q.Value,
-                q => ContactInformationType.FromValue(q)!);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(IDomainAssemblyMarker).Assembly);
 
         modelBuilder
             .Entity<User>()

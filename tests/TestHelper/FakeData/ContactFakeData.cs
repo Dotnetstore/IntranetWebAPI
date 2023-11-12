@@ -4,16 +4,16 @@ using Domain.Enums;
 
 namespace TestHelper.FakeData;
 
-public sealed class ContactFakeData
+public static class ContactFakeData
 {
     private const int Seed = 8675309;
     private const string Lang = "sv";
 
-    public static IEnumerable<ContactInformation> GenerateOwnCompanyFakeData(int quantity)
+    public static IEnumerable<EmailInformation> GenerateEmailInformationFakeData(int quantity)
     {
         Randomizer.Seed = new Random(Seed);
 
-        var faker = new Faker<ContactInformation>(Lang)
+        var faker = new Faker<EmailInformation>(Lang)
             .RuleFor(q => q.Id, f => f.Random.Guid())
             .RuleFor(q => q.CreatedBy, f => f.Random.Guid())
             .RuleFor(q => q.CreatedDate, DateTimeOffset.Now)
@@ -25,7 +25,7 @@ public sealed class ContactFakeData
             .RuleFor(q => q.IsSystem, f => f.Random.Bool())
             .RuleFor(q => q.IsGdpr, f => f.Random.Bool())
             .RuleFor(q => q.Text, f => f.Person.Email)
-            .RuleFor(q => q.ContactInformationType, ContactInformationType.RegisterEmailAddress);
+            .RuleFor(q => q.EmailType, EmailType.RegistrationEmail);
         
         return faker.Generate(quantity);
     }

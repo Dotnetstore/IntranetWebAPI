@@ -4,18 +4,18 @@ using FluentAssertions;
 
 namespace Domain.Tests.Entities.Contacts;
 
-public class ContactInformationTests
+public class EmailInformationTests
 {
-    private readonly ContactInformation _testObject = new()
+    private readonly EmailInformation _testObject = new()
     {
-        ContactInformationType = ContactInformationType.RegisterEmailAddress,
+        EmailType = EmailType.RegistrationEmail,
         Text = "Test"
     };
 
     [Fact]
     public void Should_contain_contactInformationType()
     {
-        _testObject.ContactInformationType.Should().Be(ContactInformationType.RegisterEmailAddress);
+        _testObject.EmailType.Should().Be(EmailType.RegistrationEmail);
     }
 
     [Fact]

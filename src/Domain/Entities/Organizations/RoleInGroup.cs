@@ -11,8 +11,6 @@ namespace Domain.Entities.Organizations;
 [Index(nameof(RoleId), IsUnique = false)]
 public class RoleInGroup : BaseAuditableEntity
 {
-    [Required]
-    [RequiredGuid]
     public Guid GroupId { get; init; }
 
     [Required]

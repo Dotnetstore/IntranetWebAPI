@@ -4,13 +4,13 @@ using FluentAssertions;
 
 namespace Domain.Tests.Enums;
 
-public class ContactInformationTypeTests
+public class EmailTypeTests
 {
     [Fact]
     public void RegisterEmailAddressTypeShouldHaveCorrectGuid()
     {
         // Arrange
-        var type = ContactInformationType.RegisterEmailAddress;
+        var type = EmailType.RegistrationEmail;
 
         // Act
         var expectedGuid = new Guid("2899BED0-BC4D-4773-9279-493D9C17A033");
@@ -23,10 +23,10 @@ public class ContactInformationTypeTests
     public void RegisterEmailAddressTypeShouldHaveCorrectName()
     {
         // Arrange
-        var type = ContactInformationType.RegisterEmailAddress;
+        var type = EmailType.RegistrationEmail;
 
         // Act
-        const string expectedName = "RegisterEmailAddress";
+        const string expectedName = "RegistrationEmail";
 
         // Assert
         expectedName.Should().Be(type.Name);
@@ -36,10 +36,10 @@ public class ContactInformationTypeTests
     public void RegisterEmailAddressTypeShouldHaveCorrectText()
     {
         // Arrange
-        var type = ContactInformationType.RegisterEmailAddress;
+        var type = EmailType.RegistrationEmail;
 
         // Act
-        var expectedText = ContactInformationTypeText.RegisterEmailAddress;
+        var expectedText = ContactInformationTypeText.RegistrationEmailAddress;
 
         // Assert
         expectedText.Should().Be(type.Text);
